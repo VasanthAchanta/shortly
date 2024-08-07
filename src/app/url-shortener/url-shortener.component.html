@@ -1,0 +1,24 @@
+<div class="shortlyContainer">
+    <h2 style="font-size: 18px;">SHORTLY</h2>
+    <div class="formContainer">
+      <p style="font-size: 18px;">Enter your link</p>
+      <form [formGroup]="urlForm" (ngSubmit)="shortenUrl()">
+        <input
+          class="inputContainer"
+          formControlName="originalUrl"
+          placeholder="https://www.sample.com"
+        />
+        <div *ngIf="urlForm.get('originalUrl')?.hasError('required')">
+          URL is required.
+        </div>
+        <div *ngIf="urlForm.get('originalUrl')?.hasError('pattern')">
+          URL must start with http:// or https://, include www.
+        </div>
+        <button type="submit" class="button-29" role="button">Generate Short URL</button>
+      </form>
+      <div *ngIf="shortUrl" class="shorturlContainer">
+        <p style="font-size: 18px;">Here's the generated short URL</p>
+        <a href="#" (click)="redirectToOrgUrl()">{{ shortUrl }}</a>
+      </div>
+    </div>
+  </div>
